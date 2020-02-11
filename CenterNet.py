@@ -361,9 +361,10 @@ class CenterNet:
         inter3 = yolo_conv2d(concat2, 256, 3, 1)  # /8
         inter3 = yolo_conv2d(inter3, 256, 3, 1)  # /8
 
-        inter4 = yolo_conv2d(self.s_4, 24, 4, 2)  # /4  56
+        inter4 = yolo_conv2d(self.s_4, 24, 3, 2)  # /4  56
         concat3 = tf.concat([inter3, inter4], axis=3)  # 256+24=280  /4
-        feature = yolo_conv2d(concat3, 256, 3, 1)  # /4
+        inter5 = yolo_conv2d(concat3, 256, 3, 1)  # /8
+        feature = yolo_conv2d(inter5, 256, 3, 1)  # /4
 
         return feature
 
